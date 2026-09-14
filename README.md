@@ -8,7 +8,7 @@ genome-wide association studies.
 You don't need to install anything. A hosted server is live at:
 
 ```
-https://ebi.ac.uk/gwas/mcp
+https://www.ebi.ac.uk/gwas/mcp
 ```
 
 ## Connect
@@ -16,7 +16,7 @@ https://ebi.ac.uk/gwas/mcp
 ### Claude Code
 
 ```bash
-claude mcp add --transport http gwas-mcp https://ebi.ac.uk/gwas/mcp
+claude mcp add --transport http gwas-mcp https://www.ebi.ac.uk/gwas/mcp
 ```
 
 Add `--scope user` to make it available in all your projects.
@@ -27,7 +27,7 @@ Add this to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.gwas-mcp]
-url = "https://ebi.ac.uk/gwas/mcp"
+url = "https://www.ebi.ac.uk/gwas/mcp"
 ```
 
 Any MCP client that supports remote (streamable HTTP) servers can connect using

@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: dockerhub.ebi.ac.uk/gwas/gwas-mcp
-  tag: "1.0.3"
+  tag: "1.0.4"
   pullPolicy: Always
 
 service:

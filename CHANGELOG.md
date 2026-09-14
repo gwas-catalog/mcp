@@ -1,8 +1,9 @@
 # Changelog
 
-## 1.0.3 - 2026-09-08
+## 1.0.4 - 2026-09-14
 
-- Fix release image digest parsing with Buildx descriptor output.
+- Advertise the canonical `https://www.ebi.ac.uk/gwas/mcp` endpoint so MCP
+  clients do not encounter a cross-origin redirect during initialisation.
 
 ## 1.0.3 - 2026-09-08
 

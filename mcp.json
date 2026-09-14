@@ -2,7 +2,7 @@
   "mcpServers": {
     "ebispot/gwas-mcp": {
       "command": "npx",
-      "args": ["mcp-remote", "https://ebi.ac.uk/gwas/mcp"]
+      "args": ["mcp-remote", "https://www.ebi.ac.uk/gwas/mcp"]
     }
   }
 }
