@@ -19,6 +19,8 @@ class StudyResult(BaseResult):
     gxg: bool | None = None
     snp_count: int | None = None
     full_summary_stats_available: bool | None = None
+    full_summary_stats: str | None = None
+    terms_of_license: str | None = None
     pubmed_id: int | None = None
     platforms: str | None = None
     disease_trait: str | None = None

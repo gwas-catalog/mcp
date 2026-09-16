@@ -97,6 +97,8 @@ async def test_get_studies_list(mock_ctx, mock_client):
                 "initial_sample_size": "4,533 cases",
                 "disease_trait": "Celiac disease",
                 "pubmed_id": 21399633,
+                "full_summary_stats": "https://ftp.example/GCST000854",
+                "terms_of_license": "https://creativecommons.org/publicdomain/zero/1.0/",
                 "efo_traits": [
                     {
                         "efo_id": "EFO_0001060",
@@ -123,6 +125,11 @@ async def test_get_studies_list(mock_ctx, mock_client):
     assert len(result.data) == 1
     assert result.data[0].accession_id == "GCST000854"
     assert result.data[0].disease_trait == "Celiac disease"
+    assert result.data[0].full_summary_stats == "https://ftp.example/GCST000854"
+    assert (
+        result.data[0].terms_of_license
+        == "https://creativecommons.org/publicdomain/zero/1.0/"
+    )
     assert result.pagination.total_results == 1
     assert result.pagination.truncated is False
 
