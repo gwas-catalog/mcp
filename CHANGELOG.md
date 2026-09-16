@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.5 - 2026-09-16
+
+- Add a Terms of Use MCP resource linking to the current EMBL-EBI terms for
+  GWAS Catalog and data usage.
+- Restore each study's summary-statistics location and dataset-specific licence
+  terms that were missing from MCP results despite being supplied by the GWAS
+  Catalog REST API.
+
 ## 1.0.4 - 2026-09-14
 
 - Advertise the canonical `https://www.ebi.ac.uk/gwas/mcp` endpoint so MCP
