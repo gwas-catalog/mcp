@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.6 - 2026-09-16
+
+- Fix the ancestry-label resource URI in the MCP resource index and expose the
+  Terms of Use resource URI in every tool description.
+
 ## 1.0.5 - 2026-09-16
 
 - Add a Terms of Use MCP resource linking to the current EMBL-EBI terms for

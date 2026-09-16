@@ -69,6 +69,10 @@ async def test_real_http_initialization_and_tools(monkeypatch):
             tools = await session.list_tools()
             assert len(tools.tools) == 3
             assert all(tool.annotations.read_only_hint for tool in tools.tools)
+            assert all(
+                "gwascatalog://docs/terms-of-use" in tool.description
+                for tool in tools.tools
+            )
             resources = await session.list_resources()
             assert len(resources.resources) == 6
             assert any(
@@ -81,6 +85,11 @@ async def test_real_http_initialization_and_tools(monkeypatch):
             assert result.structured_content["data"] == []
             assert "tools" in listing and "resources" in listing
             await session.read_resource("gwascatalog://ancestry-labels")
+            index = await session.read_resource("gwascatalog://docs/index")
+            assert "gwascatalog://ancestry-labels" in index.contents[0].text
+            assert (
+                "gwascatalog://reference/ancestry-labels" not in index.contents[0].text
+            )
             terms = await session.read_resource("gwascatalog://docs/terms-of-use")
             assert (
                 terms.contents[0].text == "https://www.ebi.ac.uk/about/terms-of-use/\n"

@@ -273,7 +273,7 @@ study population.
 - gwascatalog://reference/cohorts
     Use when: validating cohort identifiers
     Content: PGS Catalog cohort IDs and names
-- gwascatalog://reference/ancestry-labels
+- gwascatalog://ancestry-labels
     Use when: validating ancestry group labels
     Content: Ancestry categories, descriptions, and example sub-populations
 - gwascatalog://reference/variant-consequences
@@ -389,11 +389,18 @@ async def gwascatalog_openapi_schema() -> str:
 
 # ---- Traits tool ----
 
-TRAIT_TOOL_DESCRPTION = """
+TERMS_OF_USE_GUIDANCE = """
+Terms of use: gwascatalog://docs/terms-of-use
+"""
+
+
+TRAIT_TOOL_DESCRPTION = f"""
 Search and browse Experimental Factor Ontology (EFO) terms in the GWAS Catalog.
 
 For an overview of available tools, workflows, and reference resources see:
 gwascatalog://docs/index
+
+{TERMS_OF_USE_GUIDANCE}
 
 This tool can be helpful to explore the traits present in the GWAS Catalog. If
 the trait is present in the GWAS Catalog, there will be studies
@@ -478,6 +485,8 @@ Find GWAS Catalog studies by trait, ancestry, gene, or accession.
 For an overview of available tools, workflows, and reference resources see:
 gwascatalog://docs/index
 
+{TERMS_OF_USE_GUIDANCE}
+
 Trait search guidance:
 
 {TRAIT_SEARCH_GUIDANCE}
@@ -560,6 +569,8 @@ Find variant-trait associations with statistical details from the GWAS Catalog.
 
 For an overview of available tools, workflows, and reference resources see:
 gwascatalog://docs/index
+
+{TERMS_OF_USE_GUIDANCE}
 
 Result sorting guidance:
 
