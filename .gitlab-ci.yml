@@ -1,6 +1,7 @@
 stages:
   - test
   - publish
+  - deploy
 
 default:
   before_script:
@@ -71,3 +72,40 @@ publish_release:
     - uv run --with nox nox -s build_image -- "$CI_COMMIT_TAG"
   rules:
     - if: '$CI_COMMIT_TAG =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/ && $CI_COMMIT_REF_PROTECTED == "true"'
+
+.helm-deploy:
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/dtzar/helm-kubectl:4.2.2
+  stage: deploy
+  before_script:
+    - set -eu
+    - mkdir -p /root/.kube
+    - printf '%s' "$PLIVE_KUBECONFIG" | base64 -d > /root/.kube/config
+    - chmod 600 /root/.kube/config
+  script:
+    - helm upgrade --install gwas-mcp deployment/helm --namespace "$KUBE_NAMESPACE" --create-namespace -f "deployment/helm/values-$DEPLOY_ENVIRONMENT.yaml" --set-string "image.tag=${IMAGE_TAG#v}" --atomic --wait --timeout 10m
+
+deploy_dev:
+  extends: .helm-deploy
+  variables:
+    DEPLOY_ENVIRONMENT: dev
+    IMAGE_TAG: dev-$CI_COMMIT_SHA
+    KUBE_NAMESPACE: gwas-dev
+  resource_group: gwas-mcp-dev
+  environment:
+    name: development
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev" && $CI_PIPELINE_SOURCE == "push"'
+      when: manual
+
+deploy_production:
+  extends: .helm-deploy
+  variables:
+    DEPLOY_ENVIRONMENT: prod
+    IMAGE_TAG: $CI_COMMIT_TAG
+    KUBE_NAMESPACE: gwas
+  resource_group: gwas-mcp-production
+  environment:
+    name: production
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/ && $CI_COMMIT_REF_PROTECTED == "true"'
+      when: manual
