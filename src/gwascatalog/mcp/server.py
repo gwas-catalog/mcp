@@ -267,6 +267,9 @@ study population.
 - gwascatalog://docs/index
     Use when: first accessing the MCP to understand available resources
     Content: This index of resources and usage guidance
+- gwascatalog://docs/terms-of-use
+    Use when: checking terms that govern GWAS Catalog and data usage
+    Content: Link to the current EMBL-EBI Terms of Use
 - gwascatalog://reference/cohorts
     Use when: validating cohort identifiers
     Content: PGS Catalog cohort IDs and names
@@ -307,6 +310,18 @@ async def gwascatalog_index() -> str:
     record_resource_access("index")
     logger.info("Returning index resource")
     return _RESOURCE_INDEX
+
+
+@mcp.resource(
+    "gwascatalog://docs/terms-of-use",
+    name="terms_of_use",
+    title="EMBL-EBI Terms of Use",
+    description="Current terms governing GWAS Catalog and data usage.",
+    mime_type="text/plain",
+)
+async def gwascatalog_terms_of_use() -> str:
+    record_resource_access("terms_of_use")
+    return "https://www.ebi.ac.uk/about/terms-of-use/\n"
 
 
 @mcp.resource(

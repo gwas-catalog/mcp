@@ -69,12 +69,22 @@ async def test_real_http_initialization_and_tools(monkeypatch):
             tools = await session.list_tools()
             assert len(tools.tools) == 3
             assert all(tool.annotations.read_only_hint for tool in tools.tools)
-            assert len((await session.list_resources()).resources) == 5
+            resources = await session.list_resources()
+            assert len(resources.resources) == 6
+            assert any(
+                resource.uri == "gwascatalog://docs/terms-of-use"
+                and resource.name == "terms_of_use"
+                for resource in resources.resources
+            )
             result = await session.call_tool("gwascatalog_get_traits", {})
             assert not result.is_error
             assert result.structured_content["data"] == []
             assert "tools" in listing and "resources" in listing
             await session.read_resource("gwascatalog://ancestry-labels")
+            terms = await session.read_resource("gwascatalog://docs/terms-of-use")
+            assert (
+                terms.contents[0].text == "https://www.ebi.ac.uk/about/terms-of-use/\n"
+            )
         upstream.get_efo_traits.assert_awaited_once()
     upstream.close.assert_awaited_once()
 
