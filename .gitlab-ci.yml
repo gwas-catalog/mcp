@@ -31,7 +31,7 @@ tests:
     - uv run --with nox nox -s tests
 
 helm_checks:
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/dtzar/helm-kubectl:4.2.2
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/dtzar/helm-kubectl:3.16.2
   stage: test
   before_script:
     - set -eu
@@ -74,7 +74,7 @@ publish_release:
     - if: '$CI_COMMIT_TAG =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/ && $CI_COMMIT_REF_PROTECTED == "true"'
 
 .helm-deploy:
-  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/dtzar/helm-kubectl:4.2.2
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/dtzar/helm-kubectl:3.16.2
   stage: deploy
   before_script:
     - set -eu
@@ -109,18 +109,4 @@ deploy_production:
     name: production
   rules:
     - if: '$CI_COMMIT_TAG =~ /^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/ && $CI_COMMIT_REF_PROTECTED == "true"'
-      when: manual
-
-# Start a protected main pipeline with DEPLOY_IMAGE_TAG set to an existing image tag.
-deploy_production_tag:
-  extends: .helm-deploy
-  variables:
-    DEPLOY_ENVIRONMENT: prod
-    IMAGE_TAG: $DEPLOY_IMAGE_TAG
-    KUBE_NAMESPACE: gwas
-  resource_group: gwas-mcp-production
-  environment:
-    name: production
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "main" && $CI_COMMIT_REF_PROTECTED == "true"'
       when: manual

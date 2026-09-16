@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.8 - 2026-09-16
+
+- Use Helm 3.16.2 in CI deployments and remove production deployment jobs from
+  main-branch pipelines.
+
 ## 1.0.7 - 2026-09-16
 
 - Keep Helm chart metadata in sync with the released MCP application version.
