@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "gwas-mcp"
-version = "1.0.6"
+version = "1.0.7"
 description = "GWAS Catalog Model Context Protocol (MCP) server"
 authors = [
     { name = "Benjamin Wingfield", email = "bwingfield@ebi.ac.uk" },

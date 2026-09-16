@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.7 - 2026-09-16
+
+- Keep Helm chart metadata in sync with the released MCP application version.
+
 ## 1.0.6 - 2026-09-16
 
 - Fix the ancestry-label resource URI in the MCP resource index and expose the
