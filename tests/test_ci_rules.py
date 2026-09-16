@@ -15,5 +15,5 @@ def test_production_deploy_is_tag_only():
 def test_ci_uses_helm_3():
     pipeline = Path(".gitlab-ci.yml").read_text()
 
-    assert "dtzar/helm-kubectl:3.16.2" in pipeline
+    assert "dtzar/helm-kubectl:3.19.1" in pipeline
     assert "dtzar/helm-kubectl:4." not in pipeline

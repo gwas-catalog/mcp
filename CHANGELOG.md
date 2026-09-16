@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.9 - 2026-09-16
+
+- Use a current Helm 3 CI image compatible with Alpine package installation.
+
 ## 1.0.8 - 2026-09-16
 
 - Use Helm 3.16.2 in CI deployments and remove production deployment jobs from
