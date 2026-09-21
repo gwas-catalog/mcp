@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.10 - 2026-09-21
+
+- Update MCP 2.x connection guidance for Codex, Claude Code and ChatGPT.
+- Link hosted-server documentation to GWAS Catalog programmatic access.
+- List the server in the BioContext registry.
+
 ## 1.0.9 - 2026-09-16
 
 - Use a current Helm 3 CI image compatible with Alpine package installation.

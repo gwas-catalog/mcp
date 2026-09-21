@@ -96,7 +96,7 @@ _MCP_BROWSER_FALLBACK_HTML = b"""<!doctype html>
     </p>
     <p>
       For human-readable information, visit the
-      <a href="https://github.com/EBISPOT/gwas-mcp">documentation</a>.
+      <a href="https://www.ebi.ac.uk/gwas/docs/programmatic-access/">documentation</a>.
     </p>
   </main>
 </body>

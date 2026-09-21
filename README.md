@@ -11,9 +11,25 @@ You don't need to install anything. A hosted server is live at:
 https://www.ebi.ac.uk/gwas/mcp
 ```
 
+The server is also listed in the [BioContext registry](https://biocontext.ai/registry/gwas-catalog/mcp).
+
 ## Connect
 
+The server uses MCP's Streamable HTTP transport. Connect to the hosted endpoint
+with an MCP 2.x-compatible client.
+
+### Codex
+
+```bash
+codex mcp add gwas-mcp --url https://www.ebi.ac.uk/gwas/mcp
+```
+
+Use `codex mcp list` to check the configured servers.
+
 ### Claude Code
+
+For MCP 2.x, use Claude Code's `http` transport for the hosted Streamable HTTP
+endpoint:
 
 ```bash
 claude mcp add --transport http gwas-mcp https://www.ebi.ac.uk/gwas/mcp
@@ -21,17 +37,19 @@ claude mcp add --transport http gwas-mcp https://www.ebi.ac.uk/gwas/mcp
 
 Add `--scope user` to make it available in all your projects.
 
-### Codex
+### ChatGPT desktop app
 
-Add this to `~/.codex/config.toml`:
+Open Settings → MCP Servers → Add server, choose Streamable HTTP, and enter:
 
-```toml
-[mcp_servers.gwas-mcp]
-url = "https://www.ebi.ac.uk/gwas/mcp"
+```
+https://www.ebi.ac.uk/gwas/mcp
 ```
 
-Any MCP client that supports remote (streamable HTTP) servers can connect using
-the same URL.
+Save the server and restart the app.
+
+Other MCP clients that support remote Streamable HTTP servers can connect using
+the same URL. Clients that only support local STDIO servers can use the
+`mcp-remote` bridge.
 
 ## What you can ask
 

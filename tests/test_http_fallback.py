@@ -40,7 +40,9 @@ async def test_browser_get_returns_html():
 
     assert messages[0]["status"] == 200
     assert b"text/html; charset=utf-8" in dict(messages[0]["headers"]).values()
-    assert b"https://github.com/EBISPOT/gwas-mcp" in messages[1]["body"]
+    assert (
+        b"https://www.ebi.ac.uk/gwas/docs/programmatic-access/" in messages[1]["body"]
+    )
 
 
 async def test_browser_head_returns_no_body():
