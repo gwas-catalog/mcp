@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.12 - 2026-09-29
+
+- Exclude live REST API tests from the required CI test session.
+
 ## 1.0.11 - 2026-09-29
 
 - Identify REST API requests with a versioned `gwascatalog-mcp` User-Agent.
