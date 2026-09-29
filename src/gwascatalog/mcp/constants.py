@@ -1,4 +1,7 @@
 import os
+from importlib.metadata import version
+
+USER_AGENT = f"gwascatalog-mcp/{version('gwas-mcp')}"
 
 GWASCATALOG_MCP_INSTRUCTIONS = """
 Provides access to curated results from the GWAS Catalog, a     database of

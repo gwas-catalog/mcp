@@ -6,6 +6,8 @@ from typing import TYPE_CHECKING, Any, TypedDict
 
 import httpx
 
+from gwascatalog.mcp.constants import USER_AGENT
+
 _STUDY_SORT_FIELDS = {"accession_id": "accession_Id"}
 
 if TYPE_CHECKING:
@@ -36,7 +38,7 @@ class GwasCatalogClient:
         self._client = httpx.AsyncClient(
             base_url=base_url,
             timeout=httpx.Timeout(timeout_seconds),
-            headers={"Accept": "application/json"},
+            headers={"Accept": "application/json", "User-Agent": USER_AGENT},
         )
 
     async def close(self) -> None:

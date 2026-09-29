@@ -7,7 +7,7 @@ from importlib import resources as importlib_resources
 
 import httpx
 
-from gwascatalog.mcp.constants import HTTP_PROXY, HTTP_TIMEOUT
+from gwascatalog.mcp.constants import HTTP_PROXY, HTTP_TIMEOUT, USER_AGENT
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +30,9 @@ async def fetch_schema() -> str:
         logger.info(f"{HTTP_PROXY=}")
 
     try:
-        async with httpx.AsyncClient(proxy=HTTP_PROXY) as client:
+        async with httpx.AsyncClient(
+            proxy=HTTP_PROXY, headers={"User-Agent": USER_AGENT}
+        ) as client:
             response = await client.get(
                 _SCHEMA_URL, timeout=HTTP_TIMEOUT, follow_redirects=True
             )

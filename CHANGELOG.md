@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.11 - 2026-09-29
+
+- Identify REST API requests with a versioned `gwascatalog-mcp` User-Agent.
+
 ## 1.0.10 - 2026-09-21
 
 - Update MCP 2.x connection guidance for Codex, Claude Code and ChatGPT.
