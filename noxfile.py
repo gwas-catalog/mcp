@@ -20,7 +20,7 @@ def tests(session):
     session.install("pytest", "coverage", "pytest-asyncio")
 
     # Run tests under coverage
-    session.run("coverage", "run", "-m", "pytest", "tests")
+    session.run("coverage", "run", "-m", "pytest", "tests", "-m", "not live")
 
     # Coverage report (terminal)
     session.run(
